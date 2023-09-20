@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Админка</title>
+    <div th:replace="~{fragments/header :: header-css}"/>
+
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"/>
+
+<div class="container">
+    <div class="starter-template">
+        <form action="#" th:action="@{/admin/tag}" th:object="${uiTag}" method="post">
+            <div class="form-group top-20">
+                <label for="tag1">Новый таг:</label>
+                <input type="text" class="form-control" id="tag1" aria-describedby="weiboHelp1" th:field="*{tag}"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <div th:if="${result != null}" class="alert alert-secondary alert-dismissible fade show message mt-3"
+             role="alert">
+            <div th:text="${result}"></div>
+            <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"/>
+
+</body>
+</html>

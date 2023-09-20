@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Админка</title>
+    <div th:replace="~{fragments/header :: header-css}"/>
+
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"/>
+
+<div class="container">
+    <div class="starter-template">
+        <div class="center top-20" th:text="${result}"></div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"/>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Админка</title>
+    <div th:replace="~{fragments/header :: header-css}"/>
+
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"/>
+
+<div class="container">
+    <div class="starter-template">
+        <div class="center top-20">
+
+            <table border="1">
+                <thead>
+                <tr>
+                    <th th:text="cosplayer.name"/>
+                    <th th:text="name"/>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="feed, iStat : ${feeds.content}"
+                    th:style="${iStat.odd}? 'font-weight: bold;'"
+                    th:alt-title="${iStat.even}? 'even' : 'odd'">
+                    <td th:text="${feed.cosplayer.name}"/>
+                    <td>
+                        <span th:each="image : ${feed.images}">
+                            <img class="home-img" th:src="@{/img/{id}(id=${image.name})}"/>
+                        </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div th:if="${feeds.totalPages > 0}" class="pagination"
+                 th:each="pageNumber : ${pageNumbers}">
+                <a th:href="@{/(size=${feeds.size}, page=${pageNumber})}"
+                   th:text=${pageNumber}
+                   th:class="${pageNumber==feeds.number + 1} ? active"></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"/>
+
+</body>
+</html>

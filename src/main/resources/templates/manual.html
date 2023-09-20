@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Админка</title>
+    <div th:replace="~{fragments/header :: header-css}"/>
+
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"/>
+
+<div class="container">
+    <div class="starter-template">
+        <form action="#" th:action="@{/admin/manual}" th:object="${parseResult}" method="post"
+              enctype="multipart/form-data">
+            <div class="form-group top-20">
+                <label for="name1">Cosplayer:</label>
+                <input type="text" class="form-control" id="name1" th:field="*{cosplayerName}"/>
+                <label for="uid1">Uid:</label>
+                <input type="text" class="form-control" id="uid1" th:field="*{cosplayerUid}"/>
+
+                <div class="top-20">
+                    <input type="file" multiple name="files"/>
+                </div>
+
+                <div class="top-20">
+                    <select id="multiselect" multiple data-mdb-filter="true" th:field="*{tags}">
+                        <option th:each="tag : ${tags}" th:value="${tag}" th:label="${tag}">
+                    </select>
+                </div>
+            </div>
+            <div class="top-20">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"/>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+mongo:
+  url: mongodb://{user}:{password}@{host}:27017/?authSource={dbname}
+  name: {dbname}
+  
+api:
+  yandex:
+    token: {token}
+    path: {path}
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB

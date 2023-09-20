@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Админка</title>
+    <div th:replace="~{fragments/header :: header-css}"/>
+
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"/>
+
+<div class="container">
+    <div class="starter-template">
+
+        <form class="top-20" id="uploadForm" method="post" th:action="@{/admin/unique}" enctype="multipart/form-data">
+            <input type="file" multiple name="files"/>
+            <button class="btn btn-sm btn-outline-success float-right" type="submit">
+                Upload
+            </button>
+        </form>
+
+        <div th:if="${sim != null}" class="alert alert-secondary alert-dismissible fade show message mt-3" role="alert">
+            <div th:each="si : ${sim}">
+                <a th:href="@{/img/{id}(id=${si})}">Похожая</a>
+            </div>
+            <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"/>
+
+</body>
+</html>

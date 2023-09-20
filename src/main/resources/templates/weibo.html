@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Админка</title>
+    <div th:replace="~{fragments/header :: header-css}"/>
+
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"/>
+
+<div class="container">
+    <div class="starter-template">
+        <form action="#" th:action="@{/admin/weibo}" th:object="${uiParse}" method="post">
+            <div class="form-group top-20">
+                <label for="weibo1">Weibo URL:</label>
+                <input type="text" class="form-control" id="weibo1" aria-describedby="weiboHelp1" th:field="*{url}"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"/>
+
+</body>
+</html>
