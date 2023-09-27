@@ -82,19 +82,22 @@ public class WeiboService {
     }
 
     String cosplayerId;
+    String cosplayerName;
     if (cosplayer.isEmpty()) {
-      cosplayerId =
-          cosplayerRepository
+      Cosplayer cos = cosplayerRepository
               .save(
                   Cosplayer.builder()
                       .name(parseResult.getCosplayerName())
                       .uid(parseResult.getCosplayerUid())
-                      .build())
-              .getId();
+                      .build());
+      cosplayerId = cos.getId();
+      cosplayerName = cos.getName();
     } else {
       cosplayerId = cosplayer.get().getId();
+      cosplayerName = cosplayer.get().getId();
     }
 
+    parseResult.getTags().add(cosplayerName);
     String feedId =
         feedRepository
             .save(

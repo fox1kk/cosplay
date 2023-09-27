@@ -4,6 +4,9 @@
 .top-20 {
   margin-top: 20px;
 }
+.top-40 {
+  margin-top: 40px;
+}
 .left {
   text-align: left;
 }
@@ -77,4 +80,25 @@
 .home-img {
     max-height: 200px;
     max-width 200px;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.color-white {
+    color: white;
+}
+
+.color-white:hover {
+    color: white;
+}
+
+.row-gap-15 {
+    row-gap: 15px;
+}
+
+.card-img {
+    height: 18vw;
+    object-fit: cover;
 }

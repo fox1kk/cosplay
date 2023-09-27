@@ -28,7 +28,7 @@ public class AdminController {
   private final WeiboService weiboService;
   private final FeedService feedService;
 
-  @GetMapping("/")
+  @GetMapping("/admin")
   public String home(
       Model model,
       @RequestParam("page") Optional<Integer> page,
@@ -107,5 +107,28 @@ public class AdminController {
       @RequestParam("files") MultipartFile[] files) {
     model.addAttribute("result", weiboService.publish(parseResult, files));
     return "publish";
+  }
+
+  @GetMapping("/")
+  public String feed(
+      Model model,
+      @RequestParam("page") Optional<Integer> page,
+      @RequestParam("size") Optional<Integer> size,
+      @RequestParam("tags") Optional<List<String>> tags) {
+    int currentPage = page.orElse(1);
+    int pageSize = size.orElse(3);
+    List<String> currentTags = tags.orElse(List.of());
+    Page<Feed> feeds =
+        feedService.findPaginated(
+            tags, PageRequest.of(currentPage - 1, pageSize, Sort.by("dateCreated").descending()));
+    model.addAttribute("feeds", feeds);
+
+    model.addAttribute("currentPage", feeds.getNumber() + 1);
+    model.addAttribute("totalItems", feeds.getTotalElements());
+    model.addAttribute("totalPages", feeds.getTotalPages());
+    model.addAttribute("pageSize", pageSize);
+    model.addAttribute("tags", String.join(",", currentTags));
+
+    return "feed";
   }
 }

@@ -33,7 +33,7 @@ public class SpringSecurityConfig {
   @Bean
   @Order(2)
   public SecurityFilterChain publicFilterChain(HttpSecurity http) throws Exception {
-    http.securityMatcher("/img/**")
+    http.securityMatcher("/", "/img/**", "/css/**")
         .authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
     return http.build();
   }
